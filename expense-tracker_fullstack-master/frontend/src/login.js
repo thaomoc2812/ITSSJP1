@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [DisplayeUsername, setDisplayUsername] = useState('');
   const [error, setError] = useState('');
   const [showSignUp, setShowSignUp] = useState(false);
   const [signUpUsername, setSignUpUsername] = useState('');
@@ -68,6 +69,13 @@ const Login = ({ onLogin }) => {
             id="signup-username"
             value={signUpUsername}
             onChange={(e) => setSignUpUsername(e.target.value)}
+          />
+          <label htmlFor="signup-username">Display Name:</label>
+          <input
+            type="text"
+            id="display-name"
+            value={DisplayeUsername}
+            onChange={(e) => setDisplayUsername(e.target.value)}
           />
           <label htmlFor="signup-password">Password:</label>
           <input
