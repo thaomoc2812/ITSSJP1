@@ -31,6 +31,8 @@ function Dashboard() {
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+    console.log(`Ngày bắt đầu: ${startDate}`);
+    console.log(`Ngày kết thúc: ${endDate}`);
   };
 
   const calculateExpenseByDate = () => {

@@ -11,8 +11,8 @@ function Navigation({active, setActive}) {
             <div className="user-con">
                 <img src={avatar} alt="" />
                 <div className="text">
-                    <h2>Lee Min Ho Shopee</h2>
-                    <p>Your Money</p>
+                    <h2>HBET88</h2>
+                    <p>Quản lí tài chính của bạn</p>
                 </div>
             </div>
             <ul className="menu-items">

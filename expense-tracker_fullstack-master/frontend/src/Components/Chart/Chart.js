@@ -10,13 +10,13 @@ import {
   Legend,
   ArcElement,
 } from "chart.js";
- 
+
 import { Line } from "react-chartjs-2";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
 import { dateFormat } from "../../utils/dateFormat";
 // import { format, parseISO } from 'date-fns';
- 
+
 ChartJs.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +27,31 @@ ChartJs.register(
   Legend,
   ArcElement
 );
- 
+function compareDates(date1, date2) {
+  const [day1, month1, year1] = date1.split("-").map(Number);
+  const [day2, month2, year2] = date2.split("-").map(Number);
+
+  if (year1 > year2) {
+    return 1;
+  } else if (year1 < year2) {
+    return -1;
+  } else {
+    if (month1 > month2) {
+      return 1;
+    } else if (month1 < month2) {
+      return -1;
+    } else {
+      if (day1 > day2) {
+        return 1;
+      } else if (day1 < day2) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  }
+}
+
 function Chart({ startDate, endDate }) {
   const { incomes, expenses } = useGlobalContext();
   const incomeByDate = {};
@@ -38,9 +62,10 @@ function Chart({ startDate, endDate }) {
       const formattedDate = dateFormat(date);
       const formattedStartDate = dateFormat(startDate);
       const formattedEndDate = dateFormat(endDate);
+
       if (
-        formattedDate >= formattedStartDate &&
-        formattedDate <= formattedEndDate
+        compareDates(formattedDate, formattedStartDate) >= 0 &&
+        compareDates(formattedDate, formattedEndDate) <= 0
       ) {
         if (incomeByDate[formattedDate]) {
           incomeByDate[formattedDate] += amount;
@@ -56,8 +81,8 @@ function Chart({ startDate, endDate }) {
       const formattedStartDate = dateFormat(startDate);
       const formattedEndDate = dateFormat(endDate);
       if (
-        formattedDate >= formattedStartDate &&
-        formattedDate <= formattedEndDate
+        compareDates(formattedDate, formattedStartDate) >= 0 &&
+        compareDates(formattedDate, formattedEndDate) <= 0
       ) {
         if (expenseByDate[formattedDate]) {
           expenseByDate[formattedDate] += amount;
@@ -66,7 +91,7 @@ function Chart({ startDate, endDate }) {
         }
       }
     });
-  } else if(startDate == '' || endDate == '') {
+  } else if (startDate == "" || endDate == "") {
     incomes.forEach((income) => {
       const { date, amount } = income;
       const formattedDate = dateFormat(date);
@@ -113,14 +138,14 @@ function Chart({ startDate, endDate }) {
       },
     ],
   };
- 
+
   return (
     <ChartStyled>
       <Line data={data} />
     </ChartStyled>
   );
 }
- 
+
 const ChartStyled = styled.div`
   background: #fcf6f9;
   border: 2px solid #ffffff;
@@ -129,5 +154,5 @@ const ChartStyled = styled.div`
   border-radius: 20px;
   height: 100%;
 `;
- 
+
 export default Chart;

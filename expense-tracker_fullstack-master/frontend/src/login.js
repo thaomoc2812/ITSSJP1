@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = () => {
     // Check login credentials
-    if (username === 'admin' && password === '123') {
+    if (username === 'hbet88' && password === '123') {
       onLogin(username);
     } else {
       setError('Invalid username or password');
