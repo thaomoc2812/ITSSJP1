@@ -18,6 +18,9 @@ function Income() {
       if (totalIncome() > totalBudgetIncome()) {
         toast.error('The total income has exceeded the budget!');
       }
+      if(totalBudgetIncome() - totalIncome() < 1000){
+        toast.warning('Your Income is about to reach your Budget');
+      }
   }, [totalIncome]);
 
 
