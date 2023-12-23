@@ -66,12 +66,12 @@ export const GlobalProvider = ({children}) => {
     }
 
     const totalExpenses = () => {
-        let totalIncome = 0;
-        expenses.forEach((income) =>{
-            totalIncome = totalIncome + income.amount
+        let totalExpense = 0;
+        expenses.forEach((expense) =>{
+            totalExpense = totalExpense + expense.amount
         })
 
-        return totalIncome;
+        return totalExpense;
     }
 
     //////
@@ -94,12 +94,21 @@ export const GlobalProvider = ({children}) => {
         getBudgets()
     }
 
-    const totalBudget = () => {
+    const totalBudgetIncome = () => {
+        let totalBudgetIncome = 0;
+        budgets.forEach((budget) =>{
+            totalBudgetIncome = totalBudgetIncome + budget.incomebudget
+        })
+        
+        return totalBudgetIncome;
+
+    }
+    const totalBudgetExpense = () => {
         let totalBudget = 0;
         budgets.forEach((budget) =>{
-            totalBudget = totalBudget + budget.amount
+            totalBudget = totalBudget + budget.expensebudget
         })
-
+        console.log(totalBudget);
         return totalBudget;
     }
 
@@ -128,6 +137,8 @@ export const GlobalProvider = ({children}) => {
             getBudgets,
             budgets,
             deleteBudget,
+            totalBudgetExpense,
+            totalBudgetIncome,
             expenses,
             totalIncome,
             addExpense,

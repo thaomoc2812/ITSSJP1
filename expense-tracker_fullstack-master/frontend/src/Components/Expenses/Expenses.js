@@ -8,7 +8,7 @@ import ExpenseForm from './ExpenseForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense,totalBalance , totalExpenses} = useGlobalContext()
+    const {addIncome,expenses, getExpenses, deleteExpense,totalBalance , totalExpenses, totalBudgetExpense} = useGlobalContext()
   const [exceededBudget, setExceededBudget] = useState(false);
   const [balanceLimit, setBalenceLimit] = useState(false);
     useEffect(() =>{
@@ -17,19 +17,23 @@ function Expenses() {
 
 
   useEffect(() => {
-      if (totalExpenses() > 10000 ) {
+      if (totalExpenses() > totalBudgetExpense() ) {
           toast.error('The total income has exceeded the budget!');
       }
       if(totalBalance() < 0){
         toast.error('Not enough money');
       }
   }, [totalExpenses(), totalBalance()]);
+
+
+
+
     return (
         <ExpenseStyled>
             <InnerLayout>
                 <h1>Expenses</h1>
                 <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span>
-                Budget: <span>$10000</span></h2>
+                Expense Budget: <span>${totalBudgetExpense()}</span></h2>
                 <ToastContainer />
 
                 <div className="income-content">

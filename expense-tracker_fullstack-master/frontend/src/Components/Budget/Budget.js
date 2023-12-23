@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
 import BudgetForm from '../Form/BudgetForm';
-import IncomeItem from '../IncomeItem/IncomeItem';
+import BudgetItem from './BudgetItem';
+import { money } from '../../utils/Icons';
 
 function Budget() {
-    const {addBudget, budgets, getBudgets, deteleBudget, totalBudget, expensebudget, incomebudget} = useGlobalContext()
+    const {addBudget, budgets, getBudgets, deleteBudget} = useGlobalContext()
 
     useEffect(() =>{
         getBudgets()
@@ -20,19 +21,23 @@ function Budget() {
                         <BudgetForm />
                     </div>
                     <div className="incomes">
-                        {budgets.map((budget) => {
-                            const {_id,incomebudget, expensebudget} = budget;
-                            //console.log(incomebudget, expensebudget);
+                        {budgets.map((income) => {
+                            const {_id,incomebudget, expensebudget} = income;
+                            console.log(incomebudget, expensebudget);
                             
-                            return <IncomeItem
+                            return <BudgetItem
                                 key={_id}
                                 id={_id} 
+                                title= "Budget" 
+                                category = 'salary'
+                                indicatorColor="var(--color-green)"
                                 incomebudget={incomebudget} 
-                                expensebudget={expensebudget} 
-                                deleteItem={deteleBudget}
+                                expensebudget={expensebudget}
+                                deleteItem={deleteBudget}
                             />
                         })}
                     </div>
+                   
                 </div>
             </InnerLayout>
         </IncomeStyled>
