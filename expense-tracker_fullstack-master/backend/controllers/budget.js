@@ -38,6 +38,7 @@ exports.getBudgets = async (req, res) =>{
     }
 }
 
+
 exports.deleteBudget = async (req, res) =>{
     const {id} = req.params;
     BudgetSchema.findByIdAndDelete(id)

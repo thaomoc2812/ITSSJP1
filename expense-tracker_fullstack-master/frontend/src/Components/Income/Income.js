@@ -4,22 +4,23 @@ import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
 import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
-
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Income() {
-  const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } = useGlobalContext();
+  const { addIncome, incomes, getIncomes, deleteIncome, totalIncome, incomebudget } = useGlobalContext();
   const [exceededBudget, setExceededBudget] = useState(false);
 
   useEffect(() => {
       getIncomes();
   }, []);
-
   useEffect(() => {
       if (totalIncome() > 10000) {
-          setExceededBudget(true);
-      } else {
-          setExceededBudget(false);
+        toast.error('The total income has exceeded the budget!');
       }
   }, [totalIncome]);
+
+
 
     return (
         <IncomeStyled>
@@ -27,12 +28,7 @@ function Income() {
                 <h1>Incomes</h1>
                 <h2 className="total-income">Total Income: <span>${totalIncome()}</span>
                 Budget: <span>$10000</span></h2>
-
-                {exceededBudget && (
-                    <div className="budget-exceeded">
-                        <p>The total income has exceeded the budget!</p>
-                    </div>
-                )}
+                <ToastContainer />
                 
                 <div className="income-content">
                     <div className="form-container">
