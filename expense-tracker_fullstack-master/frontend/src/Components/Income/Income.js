@@ -27,7 +27,7 @@ function Income() {
             <InnerLayout>
                 <h1>Incomes</h1>
                 <h2 className="total-income">Total Income: <span>${totalIncome()}</span>
-                Budget: <span>${totalBudgetIncome()}</span></h2>
+                Income Budget: <span>${totalBudgetIncome()}</span></h2>
                 <ToastContainer />
                 
                 <div className="income-content">
