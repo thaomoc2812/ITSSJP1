@@ -16,15 +16,13 @@ function Expenses() {
 
 
   useEffect(() => {
-      if (totalExpenses() > totalBudgetExpense() ) {
-          toast.error('The total expense has exceeded the budget!');
-      }
-      if(totalBalance() < 0){
-        toast.error('Not enough money');
-      }
-      if(totalBudgetExpense() - totalExpenses() < 1000){
-        toast.warning('Your Expense is about to reach your Budget');
-      }
+      if (totalExpenses() > totalBudgetExpense()) {
+    toast.error('The total expense has exceeded the budget!');
+} else if (totalBalance() < 0) {
+    toast.error('Not enough money');
+} else if (totalBudgetExpense() - totalExpenses() < 1000) {
+    toast.warning('Your Expense is about to reach your Budget');
+}
   }, [totalExpenses(), totalBalance()]);
 
 

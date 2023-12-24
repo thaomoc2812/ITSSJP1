@@ -13,13 +13,12 @@ function Income() {
 
   useEffect(() => {
       getIncomes();
-  }, []);
+  }, []); 
   useEffect(() => {
       if (totalIncome() > totalBudgetIncome()) {
-        toast.error('The total income has exceeded the budget!');
-      }
-      if(totalBudgetIncome() - totalIncome() < 1000){
-        toast.warning('Your Income is about to reach your Budget');
+        toast.success('The total income has exceeded the budget!');
+      }else if(totalBudgetIncome() - totalIncome() < 1000){
+        toast.success('Your Income is about to reach your Budget');
       }
   }, [totalIncome]);
 
