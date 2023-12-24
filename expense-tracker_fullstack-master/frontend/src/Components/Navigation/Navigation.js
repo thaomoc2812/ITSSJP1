@@ -12,7 +12,7 @@ function Navigation({active, setActive}) {
                 <img src={avatar} alt="" />
                 <div className="text">
                     <h2>HBET88</h2>
-                    <p>Quản lí tài chính của bạn</p>
+                    <p>Manage your expense</p>
                 </div>
             </div>
             <ul className="menu-items">
